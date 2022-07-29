@@ -13,7 +13,7 @@ on:
     types: [started]
 env:
   REPO_URL: https://github.com/azkaban/azkaban
-  
+  CONFIG_FILE: build.gradle
   UPLOAD_RELEASE: true
   REMOVE_WORKFLOW_RUNS: true
   REMOVE_OLD_RELEASE: true
@@ -69,7 +69,9 @@ jobs:
     #   run: |
     #     cd openwrt
     #     make defconfig
-    
+    - name: 导入配置
+      run: |
+        [ -f $CONFIG_FILE ] && mv $CONFIG_FILE azkaban/build.gradle
     
 #    - name: Download package
 #      run: |
