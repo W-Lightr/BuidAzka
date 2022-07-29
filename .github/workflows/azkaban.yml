@@ -25,6 +25,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
+    
+    
+    - name: 查看环境
+      run: |
+        echo $JAVA_HOME
 
     - name: Initialization Environment
       env:
