@@ -12,7 +12,7 @@ on:
   watch:
     types: [started]
 env:
-  REPO_URL: https://github.com/azkaban/azkaban/tree/4.0.0
+  REPO_URL: https://github.com/azkaban/azkaban
   
   UPLOAD_RELEASE: true
   REMOVE_WORKFLOW_RUNS: true
@@ -62,7 +62,7 @@ jobs:
         sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
     - name: 克隆仓库
       run: |
-        git clone $REPO_URL azkaban
+        git clone --branch 4.0.0 $REPO_URL  azkaban
         ln -sf /workdir/azkaban $GITHUB_WORKSPACE/azkaban
 
     # - name: 编译
