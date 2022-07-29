@@ -12,7 +12,7 @@ on:
   watch:
     types: [started]
 env:
-  REPO_URL: https://github.com/azkaban/azkaban
+  REPO_URL: https://github.com/azkaban/azkaban/tree/4.0.0
   
   UPLOAD_RELEASE: true
   REMOVE_WORKFLOW_RUNS: true
