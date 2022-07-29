@@ -113,7 +113,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        name: NewifiD2
+        name: Azkaban-src
         tag_name: NewifiD2-Update
         body: 更新固件
         files: azkaban
