@@ -14,6 +14,7 @@ on:
 env:
   REPO_URL: https://github.com/azkaban/azkaban
   CONFIG_FILE: build.gradle
+  CONFIG_FILE_P: gradle-wrapper.properties
   UPLOAD_RELEASE: true
   REMOVE_WORKFLOW_RUNS: true
   REMOVE_OLD_RELEASE: true
@@ -72,6 +73,7 @@ jobs:
     - name: 导入配置
       run: |
         [ -f $CONFIG_FILE ] && mv $CONFIG_FILE azkaban/build.gradle
+        [ -f $CONFIG_FILE_P ] && mv $CONFIG_FILE_P azkaban/gradle/wrapper/gradle-wrapper.properties
     
 #    - name: Download package
 #      run: |
@@ -83,8 +85,8 @@ jobs:
     - name: 编译
       run: |    
         cd azkaban
-        ./gradlew build installDist
-    
+        ./gradlew build installDist -x test
+
 #    - name: CD
 #      run: |
 #        cd lede/bin/targets/ramips/mt7621
