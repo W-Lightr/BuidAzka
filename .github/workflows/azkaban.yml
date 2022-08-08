@@ -58,17 +58,27 @@ jobs:
         cp ./azkaban-exec-server/build/distributions/azkaban-exec-server-0.1.0-SNAPSHOT.tar.gz  ./results
         cp ./azkaban-web-server/build/distributions/azkaban-web-server-0.1.0-SNAPSHOT.tar.gz  ./results
         cp ./azkaban-solo-server/build/distributions/azkaban-solo-server-0.1.0-SNAPSHOT.tar.gz  ./results
-        
-    - name: Upload  to Releases
-       uses: softprops/action-gh-release@v1
-       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-       env:
-         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-       with:
-         name: Azkaban-src-4.0
-         tag_name: 4.0.0
-         body: azkaban-src-data
-         files: azkaban/results/*
+
+    - name: Upload Firmware to Releases
+      uses: softprops/action-gh-release@v1
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      with:
+        name: NewifiD2
+        tag_name: NewifiD2-Update
+        body: 更新固件
+        files: azkaban/results
+#    - name: Upload  to Releases
+#       uses: softprops/action-gh-release@v1
+#       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+#       with:
+#         name: Azkaban-src-4.0
+#         tag_name: 4.0.0
+#         body: azkaban-src-data
+#         files: azkaban/results/*
 #     - name : Upload artifact 
 #       uses: actions/upload-artifact@master
 #       with:
