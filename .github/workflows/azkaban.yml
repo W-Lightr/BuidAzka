@@ -49,15 +49,15 @@ jobs:
         cd azkaban
         ./gradlew build
 
-#    - name: CD
-#      run: |
-#        cd azkaban
-#        mkdir -p results
-#        chmod 777 results
-#        cp ./azkaban-db/build/distributions/azkaban-db-0.1.0-SNAPSHOT.tar.gz  ./results
-#        cp ./azkaban-exec-server/build/distributions/azkaban-exec-server-0.1.0-SNAPSHOT.tar.gz  ./results
-#        cp ./azkaban-web-server/build/distributions/azkaban-web-server-0.1.0-SNAPSHOT.tar.gz  ./results
-#        cp ./azkaban-solo-server/build/distributions/azkaban-solo-server-0.1.0-SNAPSHOT.tar.gz  ./results
+    - name: CD
+      run: |
+        cd azkaban
+        mkdir -p results
+        chmod 777 results
+        cp ./azkaban-db/build/distributions/azkaban-db-0.1.0-SNAPSHOT.tar.gz  ./results
+        cp ./azkaban-exec-server/build/distributions/azkaban-exec-server-0.1.0-SNAPSHOT.tar.gz  ./results
+        cp ./azkaban-web-server/build/distributions/azkaban-web-server-0.1.0-SNAPSHOT.tar.gz  ./results
+        cp ./azkaban-solo-server/build/distributions/azkaban-solo-server-0.1.0-SNAPSHOT.tar.gz  ./results
 
 #     - name : Upload artifact 
 #       uses: actions/upload-artifact@master
