@@ -65,9 +65,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        name: NewifiD2
-        tag_name: NewifiD2-Update
-        body: 更新固件
+        name: Azkaban4.0
+        tag_name: az4.0
+        body: 编译好的资源
         files: azkaban/results
 #    - name: Upload  to Releases
 #       uses: softprops/action-gh-release@v1
