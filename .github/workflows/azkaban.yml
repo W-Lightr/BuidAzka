@@ -59,11 +59,11 @@ jobs:
         cp ./azkaban-web-server/build/distributions/azkaban-web-server-0.1.0-SNAPSHOT.tar.gz  ./results
         cp ./azkaban-solo-server/build/distributions/azkaban-solo-server-0.1.0-SNAPSHOT.tar.gz  ./results
 
-     - name : Upload artifact 
-       uses: actions/upload-artifact@master
-       with:
-         name: azkaban4.0-src
-         path: azkaban/results
+#     - name : Upload artifact 
+#       uses: actions/upload-artifact@master
+#       with:
+#         name: azkaban4.0-src
+#         path: azkaban/results
          
 #	 - name: Remove old Release
 #	   uses: dev-drprasad/delete-older-releases@v0.1.0
@@ -74,16 +74,16 @@ jobs:
 #	   env:
 #		 GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
  
-#     - name: Upload  to Releases
-#       uses: softprops/action-gh-release@v1
-#       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-#       with:
-#         name: Azkaban-src-4.0
-#         tag_name: 4.0.0
-#         body: azkaban-src-data
-#         files: azkaban
+     - name: Upload  to Releases
+       uses: softprops/action-gh-release@v1
+       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+       env:
+         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+       with:
+         name: Azkaban-src-4.0
+         tag_name: 4.0.0
+         body: azkaban-src-data
+         files: azkaban/results
     
     
 #    - name: Remove workflow runs
