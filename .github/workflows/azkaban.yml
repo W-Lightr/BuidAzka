@@ -65,15 +65,15 @@ jobs:
          name: azkaban4.0-src
          path: azkaban/results
          
-	 - name: Remove old Release
-	   uses: dev-drprasad/delete-older-releases@v0.1.0
-	   if: env.REMOVE_OLD_RELEASE == 'true' && !cancelled()
-	   with:
-		 keep_latest: 0
-		 delete_tags: true
-	   env:
-		 GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-		 
+#	 - name: Remove old Release
+#	   uses: dev-drprasad/delete-older-releases@v0.1.0
+#	   if: env.REMOVE_OLD_RELEASE == 'true' && !cancelled()
+#	   with:
+#		 keep_latest: 0
+#		 delete_tags: true
+#	   env:
+#		 GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+ 
      - name: Upload  to Releases
        uses: softprops/action-gh-release@v1
        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
