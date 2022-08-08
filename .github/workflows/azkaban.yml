@@ -1,6 +1,6 @@
 # @乘风小栈
 
-name: 编译 Azkabna
+name: 编译 Azkabna 4.0
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -30,62 +30,20 @@ jobs:
     - name: 查看环境
       run: |
         echo $JAVA_HOME
-
-    - name: Initialization Environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        docker rmi `docker images -q`
-        echo "Deleting docker files, please wait ..."
-        sudo rm -rf \
-          /usr/share/dotnet \
-          /etc/mysql \
-          /etc/php
-        sudo -E apt-get -y purge \
-          azure-cli \
-          ghc* \
-          zulu* \
-          hhvm \
-          llvm* \
-          firefox \
-          google* \
-          dotnet* \
-          powershell \
-          openjdk* \
-          mysql* \
-          php*
-        sudo -E apt-get update
-        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get clean
-        sudo timedatectl set-timezone "Asia/Shanghai"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
     
     - name: 准备更新依赖
       run: |
-        sudo apt-get update
+        yum -y install make gcc-c++ cmake bison-devel ncurses-devel
         sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
     - name: 克隆仓库
       run: |
-        git clone --branch 3.90.0 $REPO_URL  azkaban
+        git clone --branch 4.0.0 $REPO_URL  azkaban
         ln -sf /workdir/azkaban $GITHUB_WORKSPACE/azkaban
 
-    # - name: 编译
-    #   run: |
-    #     cd openwrt
-    #     make defconfig
-#    - name: 导入配置
-#      run: |
-#        [ -f $CONFIG_FILE ] && mv $CONFIG_FILE azkaban/build.gradle
-#        [ -f $CONFIG_FILE_P ] && mv $CONFIG_FILE_P azkaban/gradle/wrapper/gradle-wrapper.properties
+    - name: 导入配置
+      run: |
+        [ -f $CONFIG_FILE ] && mv $CONFIG_FILE azkaban/build.gradle
     
-#    - name: Download package
-#      run: |
-#        cd lede 
-#        make defconfig
-#        make download -j$(nproc) V=s
-#        find dl -size -1024c -exec rm -f {} \;
         
     - name: 编译
       run: |    
@@ -93,34 +51,37 @@ jobs:
         ./gradlew build
 
 #    - name: CD
-#      run: |
-#        cd lede/bin/targets/ramips/mt7621
-#        mkdir -p op
-#        chmod 766 op
-#        mv ./openwrt-ramips-* ./op
+      run: |
+        cd azkaban
+        mkdir -p results
+        chmod 777 results
+        cp ./azkaban-db/build/distributions/azkaban-db-0.1.0-SNAPSHOT.tar.gz ./results
+        cp ./azkaban-exec-server/build/distributions/azkaban-exec-server-0.1.0-SNAPSHOT.tar.gz ./results
+        cp ./azkaban-web-server/build/distributions/azkaban-web-server-0.1.0-SNAPSHOT.tar.gz ./results
+        cp ./azkaban-solo-server/build/distributions/azkaban-solo-server-0.1.0-SNAPSHOT.tar.gz ./results
 
-    # - name : Upload artifact
-    #   uses: actions/upload-artifact@master
-    #   with:
-    #     name: Newifi3-d2
-    #     path: lede/bin/targets/ramips/mt7621/op
-#    - name: Remove old Release
-#      uses: dev-drprasad/delete-older-releases@v0.1.0
-#      if: env.REMOVE_OLD_RELEASE == 'true' && !cancelled()
-#      with:
-#        keep_latest: 0
-#        delete_tags: true
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+     - name : Upload artifact 
+       uses: actions/upload-artifact@master
+       with:
+         name: azkaban4.0-src
+         path: azkaban/results
+    - name: Remove old Release
+      uses: dev-drprasad/delete-older-releases@v0.1.0
+      if: env.REMOVE_OLD_RELEASE == 'true' && !cancelled()
+      with:
+        keep_latest: 0
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
     - name: Upload  to Releases
       uses: softprops/action-gh-release@v1
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        name: Azkaban-src
-        tag_name: NewifiD2-Update
-        body: 更新固件
+        name: Azkaban-src-4.0
+        tag_name: 4.0.0
+        body: azkaban编译结果
         files: azkaban
     
     
