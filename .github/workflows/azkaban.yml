@@ -83,7 +83,7 @@ jobs:
          name: Azkaban-src-4.0
          tag_name: 4.0.0
          body: azkaban-src-data
-         files: azkaban/results
+         files: azkaban/results/*
     
     
 #    - name: Remove workflow runs
