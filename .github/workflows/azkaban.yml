@@ -1,6 +1,6 @@
 # @乘风小栈
 
-name: 编译 Azkabna
+name: 编译 Azkabna 4.0
 on:
   repository_dispatch:
   workflow_dispatch:
@@ -49,7 +49,7 @@ jobs:
         cd azkaban
         ./gradlew build
 
-#    - name: CD
+    - name: CD
       run: |
         cd azkaban
         mkdir -p results
