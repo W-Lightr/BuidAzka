@@ -29,6 +29,8 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        echo $JAVA_HOME
+        echo `java -version`
         docker rmi `docker images -q`
         echo "Deleting docker files, please wait ..."
         sudo rm -rf \
