@@ -76,7 +76,7 @@ jobs:
     - name: 编译
       run: |    
         cd azkaban
-        ./gradlew build
+        ./gradlew build installDist 
 
     - name: CD
       run: |
