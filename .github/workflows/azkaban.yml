@@ -82,6 +82,7 @@ jobs:
 
     - name: CD
       run: |
+        cd azkaban
         pwd
         ls
         mkdir -p results
