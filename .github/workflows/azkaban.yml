@@ -83,14 +83,14 @@ jobs:
     - name: CD
       run: |
         cd azkaban
+        mkdir -p ./results
+        chmod 777 ./results
         pwd
         ls
-        mkdir -p results
-        chmod 777 results
         cp -r azkaban-db/* ./results
-        cp -r azkaban-exec-server/build/distributions/*  results
-        cp -r azkaban-web-server/build/distributions/*  results
-        cp -r azkaban-solo-server/build/distributions/*  results
+        cp -r azkaban-exec-server/build/distributions/*  ./results
+        cp -r azkaban-web-server/build/distributions/*  ./results
+        cp -r azkaban-solo-server/build/distributions/*  ./results
 
     - name: Upload Firmware to Releases
       uses: softprops/action-gh-release@v1
@@ -130,10 +130,10 @@ jobs:
      
     
     
-#    - name: Remove workflow runs
-#      uses: GitRML/delete-workflow-runs@main
-#      if: env.REMOVE_WORKFLOW_RUNS == 'true' && !cancelled()
-#      with:
-#        token: ${{ secrets.RELEASE_TOKEN }}
-#        retain_days: 1
-#        keep_minimum_runs: 2
+    - name: Remove workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      if: env.REMOVE_WORKFLOW_RUNS == 'true' && !cancelled()
+      with:
+        token: ${{ secrets.RELEASE_TOKEN }}
+        retain_days: 1
+        keep_minimum_runs: 2
