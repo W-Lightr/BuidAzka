@@ -101,7 +101,7 @@ jobs:
         name: Azkaban4.0
         tag_name: az4.0
         body: 编译好的资源
-        files: azkaban/results
+        files: results
 #    - name: Upload  to Releases
 #       uses: softprops/action-gh-release@v1
 #       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
