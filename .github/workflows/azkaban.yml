@@ -87,10 +87,10 @@ jobs:
         ls
         mkdir -p results
         chmod 777 results
-        cp azkaban-db/* ./results
-        cp azkaban-exec-server/*  ./results
-        cp azkaban-web-server/*  ./results
-        cp azkaban-solo-server/*  ./results
+        cp -r azkaban-db/* ./results
+        cp -r azkaban-exec-server/build/distributions/*  results
+        cp -r azkaban-web-server/build/distributions/*  results
+        cp -r azkaban-solo-server/build/distributions/*  results
 
     - name: Upload Firmware to Releases
       uses: softprops/action-gh-release@v1
