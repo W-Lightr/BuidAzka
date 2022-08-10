@@ -76,11 +76,14 @@ jobs:
     - name: 编译
       run: |    
         cd azkaban
+        pwd
+        ls
         ./gradlew build installDist -x test 
 
     - name: CD
       run: |
-        
+        pwd
+        ls
         mkdir -p results
         chmod 777 results
         cp azkaban-db/* ./results
