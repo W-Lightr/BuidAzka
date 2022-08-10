@@ -91,6 +91,8 @@ jobs:
         cp -r azkaban-exec-server/build/distributions/*  ./results
         cp -r azkaban-web-server/build/distributions/*  ./results
         cp -r azkaban-solo-server/build/distributions/*  ./results
+        echo '======================='
+        ls ./results
 
     - name: Upload Firmware to Releases
       uses: softprops/action-gh-release@v1
