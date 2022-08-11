@@ -78,7 +78,7 @@ jobs:
         cd azkaban
         pwd
         ls
-        ./gradlew build installDist -x test 
+        ./gradlew build installDist 
 
     - name: CD
       run: |
