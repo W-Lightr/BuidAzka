@@ -87,7 +87,7 @@ jobs:
         chmod 777 ./results
         pwd
         ls
-        cp -r azkaban-db/* ./results
+        cp -r azkaban-db/build/distributions/* ./results
         cp -r azkaban-exec-server/build/distributions/*  ./results
         cp -r azkaban-web-server/build/distributions/*  ./results
         cp -r azkaban-solo-server/build/distributions/*  ./results
@@ -103,7 +103,7 @@ jobs:
         name: Azkaban4.0
         tag_name: az4.0
         body: 编译好的资源
-        files: results
+        files: /home/runner/work/BuidAzka/BuidAzka/azkaban/results
 #    - name: Upload  to Releases
 #       uses: softprops/action-gh-release@v1
 #       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
