@@ -114,11 +114,11 @@ jobs:
 #         tag_name: 4.0.0
 #         body: azkaban-src-data
 #         files: azkaban/results/*
-#     - name : Upload artifact 
-#       uses: actions/upload-artifact@master
-#       with:
-#         name: azkaban4.0-src
-#         path: azkaban/results
+     - name : Upload artifact 
+       uses: actions/upload-artifact@master
+       with:
+         name: azkaban4.0-src
+         path: /home/runner/work/BuidAzka/BuidAzka/azkaban/results
          
 #	 - name: Remove old Release
 #	   uses: dev-drprasad/delete-older-releases@v0.1.0
