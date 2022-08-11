@@ -103,7 +103,7 @@ jobs:
         name: Azkaban4.0
         tag_name: az4.0
         body: 编译好的资源
-        files: /home/runner/work/BuidAzka/BuidAzka/azkaban/results
+        files: /home/runner/work/BuidAzka/BuidAzka/azkaban/results/**
 #    - name: Upload  to Releases
 #       uses: softprops/action-gh-release@v1
 #       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
@@ -114,11 +114,11 @@ jobs:
 #         tag_name: 4.0.0
 #         body: azkaban-src-data
 #         files: azkaban/results/*
-     - name : Upload artifact 
-       uses: actions/upload-artifact@master
-       with:
-         name: azkaban4.0-src
-         path: /home/runner/work/BuidAzka/BuidAzka/azkaban/results
+#     - name : Upload artifact 
+#       uses: actions/upload-artifact@master
+#       with:
+#         name: azkaban4.0-src
+#         path: /home/runner/work/BuidAzka/BuidAzka/azkaban/results
          
 #	 - name: Remove old Release
 #	   uses: dev-drprasad/delete-older-releases@v0.1.0
